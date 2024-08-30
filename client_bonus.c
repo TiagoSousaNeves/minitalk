@@ -6,7 +6,7 @@
 /*   By: tcosta-f <tcosta-f@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 04:31:37 by tcosta-f          #+#    #+#             */
-/*   Updated: 2024/08/28 18:06:28 by tcosta-f         ###   ########.fr       */
+/*   Updated: 2024/08/30 19:29:11 by tcosta-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 				"Correct format: ./client <PID> <MESSAGE>\n"));
 	msg = argv[2];
 	if (msg == NULL || !msg[0])
-		return (ft_printf("Error\nEmpty message!\n"));
+		return (ft_printf("Empty message!\n"));
 	len_msg = ft_strlen(msg);
 	server_pid = ft_atoi_printf(argv[1]);
 	if (server_pid <= 0)

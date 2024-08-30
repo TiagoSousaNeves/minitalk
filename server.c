@@ -6,7 +6,7 @@
 /*   By: tcosta-f <tcosta-f@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 17:40:56 by tcosta-f          #+#    #+#             */
-/*   Updated: 2024/08/28 18:07:33 by tcosta-f         ###   ########.fr       */
+/*   Updated: 2024/08/30 16:45:55 by tcosta-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int	main(void)
 
 static void	ft_handler_bit(int signum, siginfo_t *info, void *context)
 {
-	static int		res = 0;
-	static int		counter = 0;
-	static char		*msg = NULL;
-	static pid_t	prev_pid = 0;
+	static int		res;
+	static int		counter;
+	static char		*msg;
+	static pid_t	prev_pid;
 
 	(void)context;
 	if (info->si_pid != prev_pid)
