@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 static void	ft_handler_bit(int signum, siginfo_t *info, void *context);
 static void	ft_reset_message_state(char **msg, int *counter, int *res);
