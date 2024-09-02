@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 static void	ft_send_msg(int server_pid, char *msg, int len_msg);
 static void	ft_confirm_received(int signum);
