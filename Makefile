@@ -6,57 +6,51 @@
 #    By: tcosta-f <tcosta-f@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 17:12:50 by tcosta-f          #+#    #+#              #
-#    Updated: 2024/08/30 19:48:17 by tcosta-f         ###   ########.fr        #
+#    Updated: 2024/09/02 01:39:04 by tcosta-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME_CLIENT = client
 NAME_SERVER = server
-SRC_CLIENT = client.c
-SRC_SERVER = server.c
 SRC_CLIENT_BONUS = client_bonus.c
 SRC_SERVER_BONUS = server_bonus.c
-FT_PRINTF_DIR = ft_printf
+FT_PRINTF_DIR = ../ft_printf
 FT_PRINTF_LIB = $(FT_PRINTF_DIR)/ft_printf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
-# Build all binaries
+# Build all bonus binaries
 all: $(NAME_CLIENT) $(NAME_SERVER)
+	@echo "Moving bonus executables to main folder..."; \
+	cp $(NAME_CLIENT) ../$(NAME_CLIENT); \
+	cp $(NAME_SERVER) ../$(NAME_SERVER)
 
-# Build all binaries and bonus programs
-bonus: bonus_client bonus_server
-
-# Build client
-$(NAME_CLIENT): $(FT_PRINTF_LIB) $(SRC_CLIENT)
-	$(CC) $(CFLAGS) $(SRC_CLIENT) $(FT_PRINTF_LIB) -o $(NAME_CLIENT)
-
-# Build server
-$(NAME_SERVER): $(FT_PRINTF_LIB) $(SRC_SERVER)
-	$(CC) $(CFLAGS) $(SRC_SERVER) $(FT_PRINTF_LIB) -o $(NAME_SERVER)
-
-# Build bonus client with the same name as regular client
-bonus_client: $(FT_PRINTF_LIB) $(SRC_CLIENT_BONUS) minitalk_bonus.h
+# Build bonus client
+$(NAME_CLIENT): $(SRC_CLIENT_BONUS) $(FT_PRINTF_LIB)
+	@echo "Building bonus client..."; \
 	$(CC) $(CFLAGS) $(SRC_CLIENT_BONUS) $(FT_PRINTF_LIB) -o $(NAME_CLIENT)
 
-# Build bonus server with the same name as regular server
-bonus_server: $(FT_PRINTF_LIB) $(SRC_SERVER_BONUS) minitalk_bonus.h
+# Build bonus server
+$(NAME_SERVER): $(SRC_SERVER_BONUS) $(FT_PRINTF_LIB)
+	@echo "Building bonus server..."; \
 	$(CC) $(CFLAGS) $(SRC_SERVER_BONUS) $(FT_PRINTF_LIB) -o $(NAME_SERVER)
 
 # Build ft_printf library
 $(FT_PRINTF_LIB):
+	@echo "Building ft_printf library..."; \
 	$(MAKE) -C $(FT_PRINTF_DIR)
 
 # Clean object files and binaries
 clean:
+	@echo "Cleaning bonus binaries...";
 	@rm -f $(NAME_CLIENT) $(NAME_SERVER)
-	$(MAKE) -C $(FT_PRINTF_DIR) clean
 
 # Remove object files, binaries, and ft_printf library
 fclean: clean
+	@echo "Removing ft_printf library...";
 	@rm -f $(FT_PRINTF_LIB)
 
 # Remove object files, binaries, and ft_printf library, then rebuild everything
 re: fclean all
 
-.PHONY: all clean fclean re bonus bonus_client bonus_server
+.PHONY: all clean fclean re
